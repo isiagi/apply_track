@@ -1,7 +1,8 @@
 import Link from "next/link";
 import React from "react";
 
-function Form({ data, handleChange, handleSubmit }) {
+function Form({ data, handleChange, handleSubmit, type }) {
+  const dataArray = data
   return (
     <div>
       <h2>Create Application Track</h2>
@@ -17,7 +18,8 @@ function Form({ data, handleChange, handleSubmit }) {
             type="text"
             id="company"
             name="company"
-            value={data.company}
+            placeholder="hello"
+            value={dataArray?.company}
             onChange={handleChange}
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
           />
@@ -33,7 +35,7 @@ function Form({ data, handleChange, handleSubmit }) {
             type="text"
             id="position"
             name="position"
-            value={data.position}
+            value={dataArray?.position}
             onChange={handleChange}
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
           />
@@ -46,7 +48,7 @@ function Form({ data, handleChange, handleSubmit }) {
             type="text"
             id="date"
             name="date"
-            value={data.date}
+            value={dataArray?.date}
             onChange={handleChange}
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
           />
@@ -62,14 +64,14 @@ function Form({ data, handleChange, handleSubmit }) {
             type="text"
             id="status"
             name="status"
-            value={data.status}
+            value={dataArray?.status}
             onChange={handleChange}
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
           />
         </div>
         <div className="flex gap-5">
           <button type="submit" className="bg-[#8BD649] text-white p-2 rounded">
-            Submit
+            {type}
           </button>
           <Link href="/">
             <button className="bg-[#f87171] text-white p-2 rounded">

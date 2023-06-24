@@ -1,18 +1,20 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import Form from "@/components/Form";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
 
-function Page() {
-  const [submitting, setSubmitting] = useState(false);
-
+function page() {
   const [data, setData] = useState({
     company: "",
     position: "",
     date: "",
     status: "",
   });
+
+  const searchParams = useSearchParams();
+
+  const search = searchParams.get("id");
 
   const router = useRouter();
 
@@ -24,8 +26,8 @@ function Page() {
     e.preventDefault();
 
     try {
-      const response = await fetch("/api/create", {
-        method: "POST",
+      const response = await fetch(`/api/action/${search}`, {
+        method: "PATCH",
         body: JSON.stringify({
           company: data.company,
           position: data.position,
@@ -42,9 +44,25 @@ function Page() {
     }
   };
 
+  useEffect(() => {
+    const data = async () => {
+      const response = await fetch(`/api/action/${search}`);
+
+      const dataArray = await response.json();
+
+      setData(dataArray[0]);
+    };
+
+    data();
+  }, []);
   return (
-    <Form data={data} handleChange={handleChange} handleSubmit={handleSubmit} type={"Submit"} />
+    <Form
+      data={data}
+      handleChange={handleChange}
+      handleSubmit={handleSubmit}
+      type={"Edit"}
+    />
   );
 }
 
-export default Page;
+export default page;
