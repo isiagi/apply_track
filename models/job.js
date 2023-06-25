@@ -13,6 +13,10 @@ const jobSchema = new Schema({
     type: String,
     required: [true, "Please provide date"],
   },
+  userId:{
+    type: String,
+    required: [true, "Please provide userId"]
+  },
   status: {
     type: String,
     required: [true, "Please provide status"],

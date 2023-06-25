@@ -2,7 +2,7 @@ import jobModel from "@/models/job";
 import connectDB from "@/utils/database";
 
 export const POST = async (req) => {
-  const { company, position, status, date } = await req.json();
+  const { company, position, status, date, userId } = await req.json();
 
   try {
     await connectDB();
@@ -12,6 +12,7 @@ export const POST = async (req) => {
       position,
       status,
       date,
+      userId
     });
 
     await newApply.save();

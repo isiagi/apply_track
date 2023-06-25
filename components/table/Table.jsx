@@ -1,7 +1,7 @@
 import React from "react";
 import TableBody from "./TableBody";
 
-function Table({data, handleDelete, handleEdit}) {
+function Table({ data, handleDelete, handleEdit, submitting }) {
   return (
     <>
       <table class="md:table-fixed table-auto w-full bg-white border-collapse border border-slate-400 text-stone-700">
@@ -15,7 +15,15 @@ function Table({data, handleDelete, handleEdit}) {
             <th className="border border-slate-300">Actions</th>
           </tr>
         </thead>
-        <TableBody data={data} handleDelete={handleDelete} handleEdit={handleEdit} />
+        {submitting ? (
+          <h2>Loading</h2>
+        ) : (
+          <TableBody
+            data={data}
+            handleDelete={handleDelete}
+            handleEdit={handleEdit}
+          />
+        )}
       </table>
     </>
   );

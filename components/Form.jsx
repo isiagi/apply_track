@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-function Form({ data, handleChange, handleSubmit, type }) {
+function Form({ data, handleChange, handleSubmit, type, loading }) {
   const dataArray = data
   return (
     <div>
@@ -71,7 +71,7 @@ function Form({ data, handleChange, handleSubmit, type }) {
         </div>
         <div className="flex gap-5">
           <button type="submit" className="bg-[#8BD649] text-white p-2 rounded">
-            {type}
+            {loading ? `${type}...` : type}
           </button>
           <Link href="/">
             <button className="bg-[#f87171] text-white p-2 rounded">

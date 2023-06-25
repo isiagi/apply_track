@@ -11,6 +11,7 @@ function page() {
     date: "",
     status: "",
   });
+  const [submitting, setSubmitting] = useState(false);
 
   const searchParams = useSearchParams();
 
@@ -24,6 +25,7 @@ function page() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmitting(true);
 
     try {
       const response = await fetch(`/api/action/${search}`, {
@@ -41,6 +43,8 @@ function page() {
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -61,6 +65,7 @@ function page() {
       handleChange={handleChange}
       handleSubmit={handleSubmit}
       type={"Edit"}
+      loading={submitting}
     />
   );
 }

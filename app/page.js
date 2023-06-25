@@ -10,17 +10,21 @@ import {  useUser } from "@clerk/nextjs"
 
 export default function Home() {
   const [applys, setApplys] = useState("")
+  const [submitting, setSubmitting] = useState(false);
+
   const router = useRouter()
 
   const { isLoaded, isSignedIn, user } = useUser()
 
   useEffect(() => {
     const data = async () => {
+      setSubmitting(true)
       const response = await fetch('/api/get')
 
       const dataArray = await response.json()
 
       setApplys(dataArray)
+      setSubmitting(false)
     }
 
     data()
@@ -63,10 +67,10 @@ export default function Home() {
             New Apply
           </button>
         </Link>
-        {isSignedIn ? 'hello' : 'how are'}
+        {isSignedIn ? 
         <div>
-          <Table data={applys} handleDelete={handleDelete} handleEdit={handleEdit} />
-        </div>
+          <Table data={applys} handleDelete={handleDelete} handleEdit={handleEdit} handleSubmit={submitting}/>
+        </div> : <div>  <h1>Please Login to continue...</h1></div>}
       </div>
     </div>
   );

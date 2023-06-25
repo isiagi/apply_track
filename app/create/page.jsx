@@ -4,8 +4,11 @@ import Form from "@/components/Form";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
+import { useAuth } from '@clerk/nextjs'
+
 function Page() {
   const [submitting, setSubmitting] = useState(false);
+  const { userId } = useAuth();
 
   const [data, setData] = useState({
     company: "",
@@ -23,6 +26,7 @@ function Page() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    setSubmitting(true)
     try {
       const response = await fetch("/api/create", {
         method: "POST",
@@ -31,6 +35,7 @@ function Page() {
           position: data.position,
           date: data.date,
           status: data.status,
+          userId
         }),
       });
 
@@ -39,11 +44,13 @@ function Page() {
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setSubmitting(false)
     }
   };
 
   return (
-    <Form data={data} handleChange={handleChange} handleSubmit={handleSubmit} type={"Submit"} />
+    <Form data={data} handleChange={handleChange} handleSubmit={handleSubmit} type={"Submit"} loading={submitting} />
   );
 }
 
