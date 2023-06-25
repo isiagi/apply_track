@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import {  useUser } from "@clerk/nextjs"
+import {  useUser, useAuth } from "@clerk/nextjs"
 
 
 export default function Home() {
@@ -15,6 +15,7 @@ export default function Home() {
   const router = useRouter()
 
   const { isLoaded, isSignedIn, user } = useUser()
+  const { userId } = useAuth();
 
   useEffect(() => {
     const data = async () => {
@@ -23,7 +24,9 @@ export default function Home() {
 
       const dataArray = await response.json()
 
-      setApplys(dataArray)
+      const newData = dataArray.filter(data => data.userId === userId)
+
+      setApplys(newData)
       setSubmitting(false)
     }
 
@@ -33,6 +36,7 @@ export default function Home() {
   const handleEdit = (id) => {
     router.push(`/edit?id=${id}`)
   }
+
 
   const handleDelete = async (id) => {
     try {

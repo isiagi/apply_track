@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 
 function Form({ data, handleChange, handleSubmit, type, loading }) {
-  const dataArray = data
+  const dataArray = data;
   return (
     <div>
       <h2>Create Application Track</h2>
@@ -18,9 +18,10 @@ function Form({ data, handleChange, handleSubmit, type, loading }) {
             type="text"
             id="company"
             name="company"
-            placeholder="hello"
+            placeholder="Enter Company"
             value={dataArray?.company}
             onChange={handleChange}
+            required
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
           />
         </div>
@@ -35,8 +36,10 @@ function Form({ data, handleChange, handleSubmit, type, loading }) {
             type="text"
             id="position"
             name="position"
+            placeholder="Enter Position"
             value={dataArray?.position}
             onChange={handleChange}
+            required
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
           />
         </div>
@@ -45,11 +48,13 @@ function Form({ data, handleChange, handleSubmit, type, loading }) {
             Date
           </label>
           <input
-            type="text"
+            type="date"
             id="date"
             name="date"
+            placeholder="Enter Company"
             value={dataArray?.date}
             onChange={handleChange}
+            required
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
           />
         </div>
@@ -61,13 +66,22 @@ function Form({ data, handleChange, handleSubmit, type, loading }) {
             Status
           </label>
           <input
-            type="text"
+            list="statusList"
             id="status"
             name="status"
             value={dataArray?.status}
             onChange={handleChange}
+            placeholder="Clear to choose"
+            autocomplete="off"
+            required
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
           />
+          <datalist id="statusList">
+            <option value="Pending"></option>
+            <option value="Short-Listed"></option>
+            <option value="Interviewed"></option>
+            <option value="Got Hired"></option>
+          </datalist>
         </div>
         <div className="flex gap-5">
           <button type="submit" className="bg-[#8BD649] text-white p-2 rounded">
