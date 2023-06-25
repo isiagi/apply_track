@@ -9,7 +9,7 @@ import {  useUser, useAuth } from "@clerk/nextjs"
 
 
 export default function Home() {
-  const [applys, setApplys] = useState("")
+  const [applys, setApplys] = useState([])
   const [submitting, setSubmitting] = useState(false);
 
   const router = useRouter()
@@ -24,9 +24,7 @@ export default function Home() {
 
       const dataArray = await response.json()
 
-      const newData = dataArray.filter(data => data.userId === userId)
-
-      setApplys(newData)
+      setApplys(dataArray)
       setSubmitting(false)
     }
 
@@ -48,6 +46,8 @@ export default function Home() {
       return new Response(error.message, {status: 500})
     }
   }
+
+  const newData =  applys.filter(data => data.userId === userId)
   
   return (
     <div className="bg-[#eee]">
@@ -71,9 +71,9 @@ export default function Home() {
             New Apply
           </button>
         </Link>
-        {isSignedIn ? 
+        {isLoaded && isSignedIn ? 
         <div>
-          <Table data={applys} handleDelete={handleDelete} handleEdit={handleEdit} handleSubmit={submitting}/>
+          <Table data={newData} handleDelete={handleDelete} handleEdit={handleEdit} handleSubmit={submitting}/>
         </div> : <div>  <h1>Please Login to continue...</h1></div>}
       </div>
     </div>
