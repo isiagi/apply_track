@@ -5,10 +5,14 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
+import {  useUser } from "@clerk/nextjs"
+
 
 export default function Home() {
   const [applys, setApplys] = useState("")
   const router = useRouter()
+
+  const { isLoaded, isSignedIn, user } = useUser()
 
   useEffect(() => {
     const data = async () => {
@@ -59,6 +63,7 @@ export default function Home() {
             New Apply
           </button>
         </Link>
+        {isSignedIn ? 'hello' : 'how are'}
         <div>
           <Table data={applys} handleDelete={handleDelete} handleEdit={handleEdit} />
         </div>
