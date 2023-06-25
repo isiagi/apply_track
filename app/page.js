@@ -47,7 +47,7 @@ export default function Home() {
     }
   }
 
-  const newData =  applys.filter(data => data.userId === userId)
+  const newData =  applys?.filter(data => data.userId === userId)
   
   return (
     <div className="bg-[#eee]">
