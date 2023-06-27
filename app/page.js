@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import {  useUser, useAuth } from "@clerk/nextjs"
+import { useUser } from "@clerk/nextjs"
 
 
 export default function Home() {
@@ -15,7 +15,8 @@ export default function Home() {
   const router = useRouter()
 
   const { isLoaded, isSignedIn, user } = useUser()
-  const { userId } = useAuth();
+
+  console.log(user)
 
   useEffect(() => {
     const data = async () => {
@@ -46,14 +47,12 @@ export default function Home() {
       return new Response(error.message, {status: 500})
     }
   }
-
-  const newData =  applys?.filter(data => data.userId === userId)
   
   return (
     <div className="bg-[#eee]">
       <div className="md:mx-7 mx-0">
         <h2 className="text-center text-2xl pt-7 mb-4 text-stone-600">
-          How is your job search ?, Track your job application process.
+          How is your job search {isSignedIn && `${user.lastName}`}?, Track your job application process.
         </h2>
         <div className="flex justify-center">
           <div>
@@ -73,7 +72,7 @@ export default function Home() {
         </Link>
         {isLoaded && isSignedIn ? 
         <div>
-          <Table data={newData} handleDelete={handleDelete} handleEdit={handleEdit} handleSubmit={submitting}/>
+          <Table data={applys} handleDelete={handleDelete} handleEdit={handleEdit} handleSubmit={submitting}/>
         </div> : <div>  <h1>Please Login to continue...</h1></div>}
       </div>
     </div>
