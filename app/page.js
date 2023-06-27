@@ -5,16 +5,18 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import {  useUser } from "@clerk/nextjs"
+import { useUser } from "@clerk/nextjs"
 
 
 export default function Home() {
-  const [applys, setApplys] = useState("")
+  const [applys, setApplys] = useState([])
   const [submitting, setSubmitting] = useState(false);
 
   const router = useRouter()
 
   const { isLoaded, isSignedIn, user } = useUser()
+
+  console.log(user)
 
   useEffect(() => {
     const data = async () => {
@@ -34,6 +36,7 @@ export default function Home() {
     router.push(`/edit?id=${id}`)
   }
 
+
   const handleDelete = async (id) => {
     try {
       await fetch(`/api/action/${id.toString()}`, {method: 'DELETE'})
@@ -49,7 +52,7 @@ export default function Home() {
     <div className="bg-[#eee]">
       <div className="md:mx-7 mx-0">
         <h2 className="text-center text-2xl pt-7 mb-4 text-stone-600">
-          How is your job search ?, Track your job application process.
+          How is your job search {isSignedIn && `${user.lastName}`}?, Track your job application process.
         </h2>
         <div className="flex justify-center">
           <div>
@@ -67,7 +70,7 @@ export default function Home() {
             New Apply
           </button>
         </Link>
-        {isSignedIn ? 
+        {isLoaded && isSignedIn ? 
         <div>
           <Table data={applys} handleDelete={handleDelete} handleEdit={handleEdit} handleSubmit={submitting}/>
         </div> : <div>  <h1>Please Login to continue...</h1></div>}
