@@ -3,20 +3,19 @@
 import Table from "@/components/table/Table";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { useUser } from "@clerk/nextjs"
+import { AppContext } from "@/context/app.context";
 
 
 export default function Home() {
-  const [applys, setApplys] = useState([])
   const [submitting, setSubmitting] = useState(false);
+  const {applys, setApplys} = useContext(AppContext)
 
   const router = useRouter()
 
   const { isLoaded, isSignedIn, user } = useUser()
-
-  console.log(user)
 
   useEffect(() => {
     const data = async () => {
