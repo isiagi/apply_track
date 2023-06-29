@@ -1,11 +1,14 @@
 import Nav from "@/components/Nav";
 import "./globals.css";
-import { Inter } from "next/font/google";
+import { Roboto } from "next/font/google";
 
 import { ClerkProvider } from "@clerk/nextjs";
 import { AppContextProvider } from "@/context/app.context";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Roboto({ 
+  weight: '300',
+  subsets: ["latin"]
+ });
 
 export const metadata = {
   title: "Job Applys",
@@ -16,7 +19,7 @@ export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={`${inter.className} bg-[#eee]`}>
+        <body className={`${inter.className} bg-[#f9fafb]`}>
           <AppContextProvider>
             <Nav />
             {children}

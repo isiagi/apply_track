@@ -5,12 +5,12 @@ function Form({ data, handleChange, handleSubmit, type, loading }) {
   const dataArray = data;
   return (
     <div>
-      <h2>Create Application Track</h2>
+      <h2 className="text-center my-8 text-3xl text-[#64748b]">{type} Application Track</h2>
       <form className="max-w-md mx-auto" onSubmit={handleSubmit}>
         <div className="mb-4">
           <label
             htmlFor="company"
-            className="block mb-2 font-bold text-gray-700"
+            className="block mb-2 font-bold text-[#64748b]"
           >
             Company
           </label>
@@ -22,13 +22,13 @@ function Form({ data, handleChange, handleSubmit, type, loading }) {
             value={dataArray?.company}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+            className="w-full px-4 py-2 text-[#64748b] border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
           />
         </div>
         <div className="mb-4">
           <label
             htmlFor="position"
-            className="block mb-2 font-bold text-gray-700"
+            className="block mb-2 font-bold text-[#64748b]"
           >
             Position
           </label>
@@ -40,11 +40,11 @@ function Form({ data, handleChange, handleSubmit, type, loading }) {
             value={dataArray?.position}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+            className="w-full px-4 py-2 text-[#64748b] border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="date" className="block mb-2 font-bold text-gray-700">
+          <label htmlFor="date" className="block mb-2 font-bold text-[#64748b]">
             Date
           </label>
           <input
@@ -55,13 +55,13 @@ function Form({ data, handleChange, handleSubmit, type, loading }) {
             value={dataArray?.date}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+            className="w-full px-4 py-2 text-[#64748b] border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
           />
         </div>
         <div className="mb-4">
           <label
             htmlFor="status"
-            className="block mb-2 font-bold text-gray-700"
+            className="block mb-2 font-bold text-[#64748b]"
           >
             Status
           </label>
@@ -74,7 +74,7 @@ function Form({ data, handleChange, handleSubmit, type, loading }) {
             placeholder="Clear to choose"
             autocomplete="off"
             required
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+            className="w-full px-4 py-2 text-[#64748b] border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
           />
           <datalist id="statusList">
             <option value="Pending"></option>
@@ -84,11 +84,11 @@ function Form({ data, handleChange, handleSubmit, type, loading }) {
           </datalist>
         </div>
         <div className="flex gap-5">
-          <button type="submit" className="bg-[#8BD649] text-white p-2 rounded">
+          <button type="submit" className="bg-[#08D155] text-white p-2 rounded">
             {loading ? `${type}...` : type}
           </button>
           <Link href="/">
-            <button className="bg-[#f87171] text-white p-2 rounded">
+            <button className="bg-[#f43f5e] text-white p-2 rounded">
               Cancel
             </button>
           </Link>

@@ -8,39 +8,38 @@ function TableBody({ data, handleDelete, handleEdit }) {
   // console.log(data);
   return (
     <>
-      {data &&
+      {data ? (
         data.map((res) => (
-          <tbody key={res._id}>
+          <tbody key={res._id} className="p-7">
             <tr>
-              <td className="border border-slate-300">{res.company}</td>
-              <td className="border border-slate-300">{res.position}</td>
-              <td className="border border-slate-300">{res.date}</td>
-              <td className="border border-slate-300">{res.status}</td>
+              <td className="border border-slate-300 text-[#64748b] text-center">{res.company}</td>
+              <td className="border border-slate-300 text-center">
+                <p className="bg-[#ecfdf5] text-[#10b981] rounded">{res.position}</p>
+              </td>
+              <td className="border border-slate-300 text-[#64748b] text-center">{res.date}</td>
+              <td className="border border-slate-300 text-[#64748b] text-center">{res.status}</td>
               <td className="border border-slate-300">
-                <div className="flex">
-                  <div className="group relative" onClick={() => handleEdit(res._id)}>
-                    <FiEdit />
-                    <span
-                      class="group-hover:opacity-100 transition-opacity bg-gray-800 px-1 text-sm text-gray-100 rounded-md absolute left-1/2 
-    -translate-x-1/2 translate-y-full opacity-0 "
-                    >
-                      Edit
-                    </span>
+                <div className="flex justify-evenly">
+                  <div
+                    className="flex justify-center items-center bg-[#ecfdf5] h-8 w-8 rounded-full cursor-pointer"
+                    onClick={() => handleEdit(res._id)}
+                  >
+                    <FiEdit className="text-[#10b981]" />
                   </div>
-                  <div className="group relative" onClick={() => handleDelete(res._id)}>
-                    <MdDeleteOutline />
-                    <span
-                      class="group-hover:opacity-100 transition-opacity bg-gray-800 px-1 text-sm text-gray-100 rounded-md absolute left-1/2 
-    -translate-x-1/2 translate-y-full opacity-0 "
-                    >
-                      Delete
-                    </span>
+                  <div
+                    className="flex justify-center items-center bg-[#fff1f2] h-8 w-8 rounded-full cursor-pointer"
+                    onClick={() => handleDelete(res._id)}
+                  >
+                    <MdDeleteOutline className="text-[#f43f5e]" />
                   </div>
                 </div>
               </td>
             </tr>
           </tbody>
-        ))}
+        ))
+      ) : (
+        <h2>Loading Table...</h2>
+      )}
     </>
   );
 }
