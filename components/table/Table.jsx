@@ -4,8 +4,8 @@ import TableBody from "./TableBody";
 function Table({ data, handleDelete, handleEdit, submitting }) {
   return (
     <>
-      <table class="md:table-fixed table-auto w-full bg-white border-collapse border border-slate-400 text-stone-700 p-8">
-        <caption class="caption-top">Recently Sent Job Applications</caption>
+      <table class="md:table-fixed table-auto w-full bg-white border-separate border  text-stone-700 p-2">
+        <caption class="caption-bottom">{data.length} Sent Job Applications</caption>
         <thead>
           <tr>
             <th className="border border-slate-300 text-[#08D1C7]">Company</th>
