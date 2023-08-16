@@ -57,6 +57,9 @@ const App = ({ data, handleDelete, handleEdit, submitting }) => {
   return (
     <div>
       <Table
+        rowClassName={(record, index) =>
+          index === 0 ? "text-slate-600" : "text-slate-600"
+        }
         columns={columns}
         pagination={{
           position: ["bottomLeft"],

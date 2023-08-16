@@ -8,7 +8,7 @@ function NavComponent() {
 
   return (
     <nav className="md:px-10 px-2 flex items-center justify-between h-16 bg-[#FAFAFA]">
-      <Link href="/"><h1 className="text-lg text-[#10B981] ">JOBS APPLY</h1></Link>
+      <Link href="/"><h1 className="text-lg text-[#10B981] font-medium">JOBS APPLY</h1></Link>
       {isSignedIn ? (
         <UserButton afterSignOutUrl="/" />
       ) : (

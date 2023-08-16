@@ -98,7 +98,7 @@ export default function Home() {
             </div>
             <Link href="/create">
               <button className="bg-[#08D1C7] text-white p-2 rounded float-right flex items-center my-3">
-                <MdCreate /> New Apply
+                <MdCreate />{" "} New
               </button>
             </Link>
             {
