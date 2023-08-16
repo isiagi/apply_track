@@ -1,26 +1,27 @@
-"use client"
+"use client";
 
 import Link from "next/link";
 import { UserButton, useUser } from "@clerk/nextjs";
 
-function Nav() {
-  const { isLoaded, isSignedIn, user } = useUser();
+function NavComponent() {
+  const { isSignedIn } = useUser();
 
   return (
-    <nav className="px-10 flex items-center justify-between h-14 bg-[#6DED5C]">
-      <h1 className="text-white text-lg">Jobs Applys</h1>
+    <nav className="md:px-10 px-2 flex items-center justify-between h-16 bg-[#FAFAFA]">
+      <Link href="/"><h1 className="text-lg text-[#10B981] font-medium">JOBS APPLY</h1></Link>
       {isSignedIn ? (
         <UserButton afterSignOutUrl="/" />
       ) : (
-        <ul className="flex gap-10">
+        <ul className="flex flex-wrap gap-10">
           <Link href="/sign-up">
-            <li className="text-white text-lg">Register</li>
+            <li className="text-stone-600 text-lg">
+              <button className="bg-[#08D1C7] text-white p-2 rounded outline-none">Sign In</button>
+            </li>
           </Link>
-          <li className="text-white text-lg">Login</li>
         </ul>
       )}
     </nav>
   );
 }
 
-export default Nav;
+export default NavComponent;

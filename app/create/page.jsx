@@ -50,7 +50,7 @@ function Page() {
   };
 
   return (
-    <Form data={data} handleChange={handleChange} handleSubmit={handleSubmit} type={"Submit"} loading={submitting} />
+    <Form data={data} handleChange={handleChange} handleSubmit={handleSubmit} type={"Create"} loading={submitting} />
   );
 }
 
