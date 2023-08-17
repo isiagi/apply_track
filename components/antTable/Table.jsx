@@ -65,6 +65,7 @@ const App = ({ data, handleDelete, handleEdit, submitting }) => {
           position: ["bottomLeft"],
         }}
         dataSource={data}
+        scroll={{ x: 400 }}
       />
     </div>
   );
