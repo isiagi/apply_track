@@ -5,13 +5,16 @@ import { useRouter } from "next/navigation";
 import { useUser } from "@clerk/nextjs";
 
 import Intro from "@/components/intro/Intro";
+import { useLayoutEffect } from "react";
 
 export default function HomeComponent() {
   const router = useRouter();
 
   const { isLoaded, isSignedIn } = useUser();
 
-  isLoaded && isSignedIn && router.push("/apply");
+  useLayoutEffect(() => {
+    isLoaded && isSignedIn && router.push("/apply");
+  }, [isSignedIn]);
 
   return (
     <div className="">
