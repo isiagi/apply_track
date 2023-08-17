@@ -14,7 +14,7 @@ export default function HomeComponent() {
 
   useLayoutEffect(() => {
     isLoaded && isSignedIn && router.push("/apply");
-  }, [isSignedIn]);
+  }, []);
 
   return (
     <div className="">
